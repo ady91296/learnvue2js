@@ -11,6 +11,7 @@
   
 <script>
 
+import searchMixin from '../mixins/searchMixin'
 
 export default {
     data() {
@@ -30,17 +31,14 @@ export default {
     },
 
     computed: {
-        filterBlogs() {
-            return this.blogs.filter((blog) => {
-                return blog.title.match(this.search)
-            })
-        }
+        
     },
     filters: {
         toUpperCase(value){
             return value.toUpperCase()
         }
-    }
+    },
+    mixins :[searchMixin]
 }
 </script>
   
