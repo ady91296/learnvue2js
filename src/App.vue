@@ -1,7 +1,6 @@
 <template>
   <div>
-    <!-- <AddBlog></AddBlog> -->
-    <ShowBlog></ShowBlog>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -14,7 +13,7 @@ export default {
   components: {
     "AddBlog": addBlog,
     "ShowBlog": showBlog,
-  },
+},
   data() {
     return {
     
