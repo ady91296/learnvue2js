@@ -58,11 +58,7 @@ export default {
     },
     methods: {
         post(){
-            this.$http.post("https://jsonplaceholder.typicode.com/posts", {
-                title: this.blog.title,
-                body: this.blog.content,
-                userId: 1,
-            }).then(function(data){
+            this.$http.post("https://learnvue-d95ca-default-rtdb.firebaseio.com//posts.json", this.blog).then(function(data){
                 this.submitted = true
             }
             )

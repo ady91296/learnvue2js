@@ -3,8 +3,8 @@
         <h1>All the Blogs</h1>
         <input type="text" placeholder="Search Blog" v-model="search" />
         <div v-for="blog in filterBlogs" class="single-blog">
-            <h3>{{ blog.title | toUpperCase }}</h3>
-            <article>{{ blog.body | snippet }}</article>
+            <router-link :to="'/blog/'+blog.id"><h3>{{ blog.title | toUpperCase }}</h3></router-link>
+            <article>{{ blog.content }}</article>
         </div>
     </div>
 </template>
@@ -25,9 +25,17 @@ export default {
 
     },
     created() {
-        this.$http.get("https://jsonplaceholder.typicode.com/posts").then(function (data) {
-            this.blogs = data.body.slice(0, 10)
-        })
+        this.$http.get('https://learnvue-d95ca-default-rtdb.firebaseio.com//posts.json').then(function(data){
+            return data.json()
+        }).then(function(data){
+            var blogsArray = [];
+            for (let key in data){
+                data[key].id = key;
+                blogsArray.push(data[key]);
+            }
+            this.blogs = blogsArray;
+            //console.log(this.blogs);
+        });
     },
 
     computed: {
